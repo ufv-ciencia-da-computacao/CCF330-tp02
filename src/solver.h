@@ -2,7 +2,4 @@
 #include <stdlib.h>
 #include <limits.h>
 
-typedef struct tuple_t {
-    int x, y;
-} tuple_t;
-
+void solve(int **matrix, int lin, int col, int ***DP);

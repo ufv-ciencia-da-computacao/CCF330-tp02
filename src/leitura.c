@@ -2,7 +2,7 @@
 #include <ctype.h>
 #include "leitura.h"
 
-int read_file(int ***matrix, int *lin, int *col, int *vida, tuple_t **coord_ini_final, char *name) {
+int read_file(int ***matrix, int *lin, int *col, int *vida, tuple_t *coord_ini, tuple_t *coord_final, char *name) {
     FILE *file;
     char path[100];
     strcpy(path, "./data/");
@@ -27,14 +27,13 @@ int read_file(int ***matrix, int *lin, int *col, int *vida, tuple_t **coord_ini_
         for (int i = 0; i < *lin; i++) {
             for (int j = 0; j < *col; j++) {
                 fscanf(file, "%s", character);
-
                 if (character[0] == 'F') {
-                    coord_ini_final[1]->y = i;
-                    coord_ini_final[1]->x = j;
+                    (*coord_final).y = i;
+                    (*coord_final).x = j;
                     (*matrix)[i][j] = 0;
                 } else if (character[0] == 'I') {
-                    coord_ini_final[0]->y = i;
-                    coord_ini_final[0]->x = j;
+                    (*coord_ini).y = i;
+                    (*coord_ini).x = j;
                     (*matrix)[i][j] = *vida;
                 } else {
                     (*matrix)[i][j] = atoi(character);
@@ -43,6 +42,6 @@ int read_file(int ***matrix, int *lin, int *col, int *vida, tuple_t **coord_ini_
         }
     }
 
-    fclose(file);
+    // fclose(file);
     return 1;
 }

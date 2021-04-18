@@ -3,8 +3,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "solver.h"
 
-int read_file(int ***matrix, int *lin, int *col, tuple_t **coord_ini_final, char *name);
+typedef struct {
+    int x, y;
+} tuple_t;
+
+int read_file(int ***matrix, int *lin, int *col, int *vida, tuple_t *coord_ini, tuple_t *coord_final, char *name);
 
 #endif
