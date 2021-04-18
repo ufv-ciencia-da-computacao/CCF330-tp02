@@ -1,10 +1,9 @@
-#include <string.h>
-#include <ctype.h>
 #include "leitura.h"
 
 int read_file(int ***matrix, int *lin, int *col, int *vida, tuple_t *coord_ini, tuple_t *coord_final, char *name) {
     FILE *file;
     char path[100];
+    char character[20];
     strcpy(path, "./data/");
     strcat(path, name);
     strcat(path, ".txt");
@@ -23,7 +22,6 @@ int read_file(int ***matrix, int *lin, int *col, int *vida, tuple_t *coord_ini, 
         (*matrix) = (int**) malloc(*lin*sizeof(int*));
         for (int i = 0; i < *col; i++) (*matrix)[i] = (int*) malloc(*col*sizeof(int));
 
-        char character[20];
         for (int i = 0; i < *lin; i++) {
             for (int j = 0; j < *col; j++) {
                 fscanf(file, "%s", character);
@@ -42,6 +40,6 @@ int read_file(int ***matrix, int *lin, int *col, int *vida, tuple_t *coord_ini, 
         }
     }
 
-    // fclose(file);
+    fclose(file);
     return 1;
 }
