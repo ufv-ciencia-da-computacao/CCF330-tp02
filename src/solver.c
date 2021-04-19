@@ -19,12 +19,19 @@ void solve(int **matrix, int lin, int col, tuple_t coord_i, tuple_t coord_f, int
 
 }
 
-void find_way(int **DP, int x, int y, tuple_t coord_f, FILE *file) {
+int find_way(int **matrix, int **DP, int x, int y, tuple_t coord_f, tuple_t coord_i, int *vida, tuple_t** way, int* move_qtd) {
 
-    fprintf(file, "%d %d\n", y-1, x-1);
+    if(coord_f.x == x || coord_f.y == y) return 1;
+    
+    (*way)[(*move_qtd)].x = x-1;
+    (*way)[(*move_qtd)].y = y-1;
+    (*move_qtd)++;
 
-    if(coord_f.x+1 == x || coord_f.y+1 == y) return;
+    if (x-1 != coord_i.x && y-1 != coord_f.y) *vida += matrix[y-1][x-1];
 
-    if(DP[y-1][x] > DP[y][x-1]) find_way(DP, x, y-1, coord_f, file);
-    else                        find_way(DP, x-1, y, coord_f, file);
+    if (*vida <= 0) return 0;
+
+
+    if(DP[y-1][x] > DP[y][x-1]) return find_way(matrix, DP, x, y-1, coord_f, coord_i, vida, way, move_qtd);
+    else                        return find_way(matrix, DP, x-1, y, coord_f, coord_i, vida, way, move_qtd);
 }
