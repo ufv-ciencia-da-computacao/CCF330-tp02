@@ -19,8 +19,8 @@ int read_file(int ***matrix, int *lin, int *col, int *vida, tuple_t *coord_ini, 
     while (!feof(file)) {
         fscanf(file, "%d %d %d", lin, col, vida);
         
-        (*matrix) = (int**) malloc(*lin*sizeof(int*));
-        for (int i = 0; i < *col; i++) (*matrix)[i] = (int*) malloc(*col*sizeof(int));
+        (*matrix) = (int**) malloc(*lin * sizeof(int*));
+        for (int i = 0; i < *lin; i++) (*matrix)[i] = (int*) malloc(*col * sizeof(int));
 
         for (int i = 0; i < *lin; i++) {
             for (int j = 0; j < *col; j++) {

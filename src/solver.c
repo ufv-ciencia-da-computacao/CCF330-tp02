@@ -2,7 +2,7 @@
 
 int max(int a, int b) {
     if (a > b) return a;
-    else return b;
+    else       return b;
 }
 
 void solve(int **matrix, int lin, int col, tuple_t coord_i, tuple_t coord_f, int ***DP) {
@@ -27,10 +27,8 @@ int find_way(int **matrix, int **DP, int x, int y, tuple_t coord_f, tuple_t coor
     (*way)[(*move_qtd)].y = y-1;
     (*move_qtd)++;
 
-    if (x-1 != coord_i.x && y-1 != coord_f.y) *vida += matrix[y-1][x-1];
-
+    *vida += matrix[y-1][x-1];
     if (*vida <= 0) return 0;
-
 
     if(DP[y-1][x] > DP[y][x-1]) return find_way(matrix, DP, x, y-1, coord_f, coord_i, vida, way, move_qtd);
     else                        return find_way(matrix, DP, x-1, y, coord_f, coord_i, vida, way, move_qtd);
